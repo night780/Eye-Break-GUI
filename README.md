@@ -1,5 +1,7 @@
 # Eye Break Program
 The Eye Break Program is a simple Java GUI application designed to remind computer users to take breaks and rest their eyes. The program consists of a progress bar that tracks the amount of time that has passed, and when the progress bar reaches 100%, it displays a reminder message to take an eye break.
+<img src="GUI1.PNG" alt="Image description">
+<img src="gui2.PNG" alt="Image description">
 
 ## Features
 The program has the following features:
