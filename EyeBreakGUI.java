@@ -1,22 +1,24 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
+import java.io.File;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.swing.*;
 
+/**
+ * The type Eye break gui.
+ */
 public class EyeBreakGUI {
     private JButton startButton, stopButton;
     private JLabel instructionLabel;
     private JProgressBar progressBar;
     private boolean running = false;
 
+    /**
+     * Instantiates a new Eye break gui.
+     */
     public EyeBreakGUI() {
         createGUI();
     }
@@ -80,13 +82,19 @@ public class EyeBreakGUI {
                     while (running) {
                         for (int i = 0; i <= 100 && running; i++) {
                             progressBar.setValue(i);
-                            Thread.sleep(1200*1000); // 20 minutes
+                            Thread.sleep(10); // 20 minutes
                         }
                         if (running) {
                             String message = "Time to take an eye break! Look away from the screen for 10-20 seconds.";
                             String title = "Eye Break";
                             int messageType = JOptionPane.INFORMATION_MESSAGE;
-                            JOptionPane.showMessageDialog(null, message, title, messageType);
+                            JOptionPane pane = new JOptionPane(message, messageType, JOptionPane.DEFAULT_OPTION, null, new Object[] {}, null);
+                            JDialog dialog = pane.createDialog(title);
+                            //((JDialog) dialog).setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+                            dialog.setModal(true);
+                            dialog.setAlwaysOnTop(true);
+                            dialog.setVisible(true);
+
                             progressBar.setValue(0);
                         }
                     }
@@ -102,6 +110,11 @@ public class EyeBreakGUI {
         }).start();
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
