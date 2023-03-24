@@ -82,7 +82,7 @@ public class EyeBreakGUI {
                     while (running) {
                         for (int i = 0; i <= 100 && running; i++) {
                             progressBar.setValue(i);
-                            Thread.sleep(12*100); // 20 minutes
+                            Thread.sleep(1200*100); // 20 minutes
                         }
                         if (running) {
                             String message = "Time to take an eye break! Look away from the screen for 10-20 seconds.";
