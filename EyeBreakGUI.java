@@ -13,7 +13,7 @@ import javax.swing.*;
  * @date 3-25-23
  */
 public class EyeBreakGUI {
-    public static int MILLIS;
+    public static int MILLIS = 20*1000;
     private JButton startButton, stopButton;
     private JLabel instructionLabel;
     private JProgressBar progressBar;
@@ -74,8 +74,8 @@ public class EyeBreakGUI {
             }
 
         });
-        
-        
+
+
         panel.add(stopButton);
 
         progressBar = new JProgressBar();
@@ -132,6 +132,7 @@ public class EyeBreakGUI {
                         for (int i = 0; i <= 100 && running; i++) {
                             progressBar.setValue(i);
                             Thread.sleep(MILLIS); // 20 minutes
+
                         }
                         if (running) {
                             Toolkit.getDefaultToolkit().beep();
@@ -142,6 +143,18 @@ public class EyeBreakGUI {
                             JDialog dialog = pane.createDialog(title);
                             dialog.setModal(true);
                             dialog.setAlwaysOnTop(true);
+
+                            // add a button that closes the window and says 'okay'
+                            JButton okayButton = new JButton("Okay");
+                            okayButton.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    dialog.dispose(); // close the window
+                                }
+                            });
+                            pane.setOptions(new Object[]{okayButton}); // add the button to the dialog
+
+                            
                             dialog.setVisible(true);
                             progressBar.setValue(0);
                         }
