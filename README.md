@@ -3,7 +3,9 @@ The Eye Break Program is a simple Java GUI application designed to remind comput
 <br>
 <img src="GUI1.png" alt="Image description">
 <img src="gui2.PNG" alt="Image description">
-
+### Fun Version 
+This program will do the same thing but alerts with a gif
+<img src="FUN.png" alt="Image description">
 ## Features
 The program has the following features:
 
